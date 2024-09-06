@@ -1,10 +1,15 @@
 //const require = require('express')
 import express from "express";  
+import dotenv from "dotenv";  
+import connectDB from "./config/database.js";
+
+dotenv.config({});
 
 const app = express();
 
-const PORT = 8080;
+const PORT = process.env.PORT || 5080;
 
 app.listen(PORT, ()=>{
-    console.log(`Server listen at port `);
+    connectDB();
+    console.log(`Server listen at port ${PORT}`);
 })
