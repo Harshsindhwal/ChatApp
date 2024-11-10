@@ -8,6 +8,27 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.jsx">
+    </script>
+    <script>
+      // JavaScript to cycle through images in order on each page load
+      document.addEventListener("DOMContentLoaded", () => {
+        // Array of CSS variables for background images
+        const bgImages = ["var(--bg-image-1)", "var(--bg-image-2)", "var(--bg-image-3)"];
+    
+        // Retrieve the last displayed image index from local storage, default to -1
+        let currentIndex = localStorage.getItem("bgImageIndex");
+        currentIndex = currentIndex ? parseInt(currentIndex) : -1;
+    
+        // Calculate the next index in the sequence
+        const nextIndex = (currentIndex + 1) % bgImages.length;
+    
+        // Set the CSS variable for the background image
+        document.documentElement.style.setProperty('--bg-image', bgImages[nextIndex]);
+    
+        // Store the new index in local storage for the next refresh
+        localStorage.setItem("bgImageIndex", nextIndex);
+      });
+    </script>
   </body>
 </html>
